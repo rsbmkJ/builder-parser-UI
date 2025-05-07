@@ -77,12 +77,9 @@ function App() {
       const formData = new FormData(formEvent.currentTarget);
       const json = formData.get("json") as string;
       try {
-        const { nodes, edges, Nodes, Edges } = JSON.parse(json);
+        const { Nodes: newNodesData, Edges: newEdgesData } = JSON.parse(json);
         // TODO: Validate newNodesData and newEdgesData structure if necessary
         // For now, assuming they are in the correct format for React Flow
-
-        const newNodesData = nodes || Nodes;
-        const newEdgesData = edges || Edges;
 
         // Example: Basic validation for nodes and edges arrays
         if (!Array.isArray(newNodesData) || !Array.isArray(newEdgesData)) {
@@ -94,14 +91,14 @@ function App() {
         const formattedNodes: Node[] = newNodesData.map((node) => ({
           id: node.id,
           position: { x: 0, y: 0 }, // Initial position, layout will adjust this
-          data: { label: node.data?.label || node.id },
+          data: { label: node.title },
           // Add other necessary node properties
         }));
 
         const formattedEdges: Edge[] = newEdgesData.map((edge) => ({
-          id: edge.id || `${edge.source}-${edge.target}`, // Ensure edges have IDs
-          source: edge.source,
-          target: edge.target,
+          id: `${edge.source}-${edge.target}`, // Ensure edges have IDs
+          source: edge.sourceId,
+          target: edge.targetId,
           // Add other necessary edge properties
         }));
 
