@@ -77,9 +77,12 @@ function App() {
       const formData = new FormData(formEvent.currentTarget);
       const json = formData.get("json") as string;
       try {
-        const { nodes: newNodesData, edges: newEdgesData } = JSON.parse(json);
+        const { nodes, edges, Nodes, Edges } = JSON.parse(json);
         // TODO: Validate newNodesData and newEdgesData structure if necessary
         // For now, assuming they are in the correct format for React Flow
+
+        const newNodesData = nodes || Nodes;
+        const newEdgesData = edges || Edges;
 
         // Example: Basic validation for nodes and edges arrays
         if (!Array.isArray(newNodesData) || !Array.isArray(newEdgesData)) {
@@ -131,7 +134,7 @@ function App() {
               className={`p-2 w-96 rounded-md text-black bg-white shadow h-full border focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 hasErrorJson ? "border-red-500 ring-red-500" : "border-gray-300"
               }`}
-              placeholder={placeholderJson}
+              defaultValue={placeholderJson}
               rows={10}
               style={{ resize: "none" }}
               onChange={() => hasErrorJson && setHasErrorJson(false)}
