@@ -96,7 +96,7 @@ function App() {
         }));
 
         const formattedEdges: Edge[] = newEdgesData.map((edge) => ({
-          id: `${edge.source}-${edge.target}`, // Ensure edges have IDs
+          id: `${edge.sourceId}-${edge.targetId}`, // Ensure edges have IDs
           source: edge.sourceId,
           target: edge.targetId,
           // Add other necessary edge properties
