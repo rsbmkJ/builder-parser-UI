@@ -11,30 +11,24 @@ dagreGraph.setDefaultEdgeLabel(() => ({}));
 
 const nodeWidth = 150;
 const nodeHeight = 50;
-const placeholderJson = `
-{
-  "nodes": [
+const placeholderJson = `{
+  "Nodes": [
     {
       "id": "node-1",
-      "data": {
-        "label": "Node 1"
-      }
+      "title": "Node 1"
     },
     {
       "id": "node-2",
-      "data": {
-        "label": "Node 2"
-      }
+      "title": "Node 2"
     }
   ],
-  "edges": [
+  "Edges": [
     {
-      "source": "node-1",
-      "target": "node-2"
+      "sourceId": "node-1",
+      "targetId": "node-2"
     }
   ]
-}
-`;
+}`;
 
 const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = "TB") => {
   dagreGraph.setGraph({ rankdir: direction });
